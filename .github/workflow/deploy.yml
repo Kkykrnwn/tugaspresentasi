@@ -2,7 +2,7 @@ name: GitHub Page
 on:
   push:
     branches:
-      - master  # atau sesuaikan dengan branch yang kamu gunakan, misalnya "main"
+      - main  # atau sesuaikan dengan branch yang kamu gunakan, misalnya "main"
 
 jobs:
   deploy:
