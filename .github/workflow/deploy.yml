@@ -1,1 +1,35 @@
+name: GitHub Page
+on:
+  push:
+    branches:
+      - master  # atau sesuaikan dengan branch yang kamu gunakan, misalnya "main"
+
+jobs:
+  deploy:
+    name: Github Page
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2  # Gunakan v2
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm ci  # Pastikan menggunakan npm ci agar dependencies di-install dengan benar
+
+      - name: Lint
+        run: npm run lint  # Opsional, untuk menjalankan linting sebelum build
+
+      - name: Build
+        run: npm run build  # Proses build aplikasi React
+
+      - name: Deploy Github Page
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build  # Ganti dari ./dist ke ./build
 
